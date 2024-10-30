@@ -10,46 +10,57 @@ import shool from "../assets/images/templatesImages/shool.png";
 import travel from "../assets/images/templatesImages/travel.png";
 import leftArrow from "../assets/images/icons/leftArrow.svg";
 import rightArrow from "../assets/images/icons/rightArrow.svg";
+
 export default function Templates() {
   const templates = [
     {
+      name: "Travel Agency",
+      path: travel,
+      description: "Professional website template for travel agencies and tour operators"
+    },
+    {
       name: "Bakery",
       path: bakery,
+      description: "Custom website design for bakeries and pastry shops"
     },
     {
-      name: "HealthCare",
+      name: "Healthcare",
       path: HealthCare,
+      description: "Medical and healthcare professional website template"
     },
     {
-      name: "E-comerce",
+      name: "E-commerce",
       path: ecomerce,
+      description: "Full-featured online store website template"
     },
     {
       name: "Events",
       path: event,
+      description: "Event planning and management website template"
     },
     {
       name: "Gym",
       path: gym,
+      description: "Fitness center and gym website template"
     },
     {
-      name: "Lawyer",
+      name: "Legal Services",
       path: layer,
+      description: "Professional law firm website template"
     },
     {
-      name: "Real Estat",
+      name: "Real Estate",
       path: realEstat,
+      description: "Property listing and real estate agency website template"
     },
     {
       name: "School",
       path: shool,
-    },
-    {
-      name: "Travel Agency",
-      path: travel,
+      description: "Educational institution website template"
     },
   ];
   const [imagePath, setImagePath] = useState(templates[0].path);
+  const [selectedTemplate, setSelectedTemplate] = useState(templates[0]);
   const [targetScroll, setTargetScroll] = useState(0);
   const [endScroll, setEndScroll] = useState(0);
   const containerRef = useRef(null);
@@ -80,34 +91,44 @@ export default function Templates() {
   }, [targetScroll]);
 
   return (
-    <div className="flex flex-col space-y-8">
+    <section className="flex flex-col space-y-8" aria-label="Website Templates">
       <div className="flex justify-center">
-        <p className="text-4xl lg:text-6xl font-righteous uppercase text-center">Improve your business</p>
+        <h2 className="text-4xl lg:text-6xl font-righteous uppercase text-center">Improve your business</h2>
       </div>
       <div className="flex justify-center lg:py-10">
         <div className="relative w-full max-w-[600px]">
           <button
             onClick={() => handleScroll(-150)}
             className={`absolute left-0 top-0 pr-5 lg:pr-10 h-full bg-gradient-to-r from-backGround to-transparent cursor-pointer ${targetScroll === 0 ? 'hidden' : ''}`}
+            aria-label="Scroll templates left"
           >
-            <img src={leftArrow} alt="left arrow" className="w-5 lg:w-7" />
+            <img src={leftArrow} alt="Navigate to previous templates" className="w-5 lg:w-7" />
           </button>
           <button
             onClick={() => handleScroll(150)}
             className={`absolute right-0 top-0 h-full pl-5 lg:pl-10 bg-gradient-to-r from-transparent to-backGround cursor-pointer`}
+            aria-label="Scroll templates right"
           >
-            <img src={rightArrow} alt="right arrow" className="w-5 lg:w-7" />
+            <img src={rightArrow} alt="Navigate to next templates" className="w-5 lg:w-7" />
           </button>
           <div
             ref={containerRef}
             className="flex space-x-3 w-full px-5 overflow-x-scroll overflow-y-hidden scroll-m-6 scrollStyle"
             style={{ scrollBehavior: "smooth" }}
+            role="tablist"
+            aria-label="Website template categories"
           >
             {templates.map((template, index) => (
               <button
-                onClick={() => setImagePath(template.path)}
+                onClick={() => {
+                  setImagePath(template.path);
+                  setSelectedTemplate(template);
+                }}
                 key={index}
                 className="px-3 sm:px-5 h-10 whitespace-nowrap flex-grow bg-[rgb(7,7,7)] rounded-full text-slate-400 text-sm sm:text-md hover:bg-black/60 hover:text-slate-300"
+                role="tab"
+                aria-selected={selectedTemplate.name === template.name}
+                aria-controls={`template-${template.name.toLowerCase().replace(' ', '-')}`}
               >
                 {template.name}
               </button>
@@ -122,7 +143,9 @@ export default function Templates() {
               <img
                 src={imagePath}
                 className="hidden dark:block h-[156px] md:h-[278px] w-full rounded-lg"
-                alt=""
+                alt={selectedTemplate.description}
+                role="tabpanel"
+                id={`template-${selectedTemplate.name.toLowerCase().replace(' ', '-')}`}
               />
             </div>
           </div>
@@ -131,6 +154,6 @@ export default function Templates() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
