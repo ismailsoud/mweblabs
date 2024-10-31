@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   const handleLinkClick = () => {
@@ -66,8 +68,28 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Contact Us</h3>
             <div className="space-y-2 font-extralight">
-              <p>Email: contact@mweblabs.com</p>
+              <p>Email: marocweblabs@gmail.com</p>
               <p>Phone: +212 622 23 25 04</p>
+              <div className="flex items-center space-x-1">
+                <FaInstagram />
+                <a
+                  href="https://www.instagram.com/mweblabs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>mweblabs</span>
+                </a>
+              </div>
+              <div className="flex items-center space-x-1">
+                <FaXTwitter />
+                <a
+                  href="https://twitter.com/mweblabs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>mweblabs</span>
+                </a>
+              </div>
               <div>
                 <Link to="/contact">
                   <button
