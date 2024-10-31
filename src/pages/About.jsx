@@ -7,7 +7,7 @@ const About = () => {
   const [navHeight, setNavHeight] = useState(null);
 
   useEffect(() => {
-    // Add meta tags dynamically for About page
+    // Add meta tags dynamically for About page - English
     document.title = "About MWebLabs | Professional Web Development Agency";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
@@ -16,17 +16,58 @@ const About = () => {
       );
     }
 
-    // Add JSON-LD structured data
+    // Add French meta description
+    const frMetaDesc = document.createElement('meta');
+    frMetaDesc.name = 'description';
+    frMetaDesc.setAttribute('lang', 'fr');
+    frMetaDesc.content = "Découvrez MWebLabs, une agence de développement web de premier plan offrant des solutions numériques innovantes. Notre équipe d'experts combine créativité et excellence technique pour transformer votre présence en ligne.";
+    document.head.appendChild(frMetaDesc);
+
+    // Add French title meta
+    const frTitleMeta = document.createElement('meta');
+    frTitleMeta.name = 'title';
+    frTitleMeta.setAttribute('lang', 'fr');
+    frTitleMeta.content = "À Propos de MWebLabs | Agence Professionnelle de Développement Web";
+    document.head.appendChild(frTitleMeta);
+
+    // Add JSON-LD structured data with bilingual support
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.text = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "MWebLabs",
-      "description": "Premier web development agency delivering innovative digital solutions",
+      "description": [
+        {
+          "@language": "en",
+          "@value": "Premier web development agency delivering innovative digital solutions"
+        },
+        {
+          "@language": "fr",
+          "@value": "Agence professionnelle de développement web offrant des solutions numériques innovantes"
+        }
+      ],
       "areaServed": "Worldwide",
-      "serviceType": ["Web Development", "Web Design", "Digital Strategy"],
-      "knowsAbout": ["Web Development", "UI/UX Design", "Digital Strategy", "Frontend Development", "Backend Development"]
+      "serviceType": [
+        {
+          "@language": "en",
+          "@value": ["Web Development", "Web Design", "Digital Strategy"]
+        },
+        {
+          "@language": "fr",
+          "@value": ["Développement Web", "Design Web", "Stratégie Numérique"]
+        }
+      ],
+      "knowsAbout": [
+        {
+          "@language": "en",
+          "@value": ["Web Development", "UI/UX Design", "Digital Strategy", "Frontend Development", "Backend Development"]
+        },
+        {
+          "@language": "fr",
+          "@value": ["Développement Web", "Design UI/UX", "Stratégie Numérique", "Développement Frontend", "Développement Backend"]
+        }
+      ]
     });
     document.head.appendChild(script);
 

@@ -4,9 +4,15 @@ import image3 from "../assets/images/squaredGirlImage.jpg";
 import Logo from "../assets/images/logo/agencyLogo.gif";
 import Navbar from "./Navbar";
 import TechBlock from "./TechBlock";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   const [navHeight, setNavHeight] = useState(null);
+
+  const handleLinkClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setMenuState(false);
+  };
 
   return (
     <div
@@ -49,9 +55,14 @@ export default function Hero() {
             </p>
           </div>
           <div className="w-full pt-6 lg:pl-16 lg:pt-0">
-            <button className="bg-purple-900 hover:bg-purple-800 transition-colors duration-200 text-white  font-roboto w-44 h-14 rounded-full hidden lg:flex flexCenter lg:h-12 lg:w-44 text-lg">
+          <Link to="/contact">
+            <button
+              onClick={handleLinkClick}
+              className="bg-purple-900 hover:bg-purple-800 transition-colors duration-200 text-white  font-roboto w-44 h-14 rounded-full hidden lg:flex flexCenter lg:h-12 lg:w-44 text-lg"
+            >
               GET STARTED
             </button>
+            </Link>
           </div>
           <div className="py-10 lg:border-t-[1px] border-slate-400 items-center">
             <TechBlock />
@@ -100,9 +111,9 @@ export default function Hero() {
             </p>
           </div>
           <div className="h-1/2 flex justify-center items-center pl-8">
-            <img 
-              src={Logo} 
-              alt="M.weblabs company logo" 
+            <img
+              src={Logo}
+              alt="M.weblabs company logo"
               className="w-11/12 h-min"
               loading="lazy"
             />

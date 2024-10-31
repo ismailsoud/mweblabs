@@ -1,6 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
+  const handleLinkClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setMenuState(false);
+  };
   return (
     <footer className="bg-backGround text-white border-t border-slate-500 ">
       <div className="px-4 lg:px-36 py-12">
@@ -64,9 +69,14 @@ export default function Footer() {
               <p>Email: contact@mweblabs.com</p>
               <p>Phone: +212 622 23 25 04</p>
               <div>
-                <button className="bg-purple-900 hover:bg-purple-800 transition-colors duration-200 text-slate-200 w-36 h-12 rounded-full mt-4">
-                  GET IN TOUCH
-                </button>
+                <Link to="/contact">
+                  <button
+                    onClick={handleLinkClick}
+                    className="bg-purple-900 hover:bg-purple-800 transition-colors duration-200 text-slate-200 w-36 h-12 rounded-full mt-4"
+                  >
+                    GET IN TOUCH
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -75,7 +85,8 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="pt-8 border-t border-slate-500 flex flex-col lg:flex-row justify-center items-center space-y-4 lg:space-y-0 font-extralight">
           <p className="text-slate-300">
-            © 2069 <span className="text-purple-700">M.</span>WEBLABS | All rights reserved.
+            © 2069 <span className="text-purple-700">M.</span>WEBLABS | All
+            rights reserved.
           </p>
         </div>
       </div>
