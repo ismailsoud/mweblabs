@@ -96,46 +96,47 @@ export default function Templates() {
         <h2 className="text-4xl lg:text-6xl font-righteous uppercase text-center">Improve your business</h2>
       </div>
       <div className="flex justify-center lg:py-10">
-        <div className="relative w-full max-w-[600px]">
-          <button
-            onClick={() => handleScroll(-150)}
-            className={`absolute left-0 top-0 pr-5 lg:pr-10 h-full bg-gradient-to-r from-backGround to-transparent cursor-pointer ${targetScroll === 0 ? 'hidden' : ''}`}
-            aria-label="Scroll templates left"
-          >
-            <img src={leftArrow} alt="Navigate to previous templates" className="w-5 lg:w-7" />
-          </button>
-          <button
-            onClick={() => handleScroll(150)}
-            className={`absolute right-0 top-0 h-full pl-5 lg:pl-10 bg-gradient-to-r from-transparent to-backGround cursor-pointer`}
-            aria-label="Scroll templates right"
-          >
-            <img src={rightArrow} alt="Navigate to next templates" className="w-5 lg:w-7" />
-          </button>
-          <div
-            ref={containerRef}
-            className="flex space-x-3 w-full px-5 overflow-x-scroll overflow-y-hidden scroll-m-6 scrollStyle"
-            style={{ scrollBehavior: "smooth" }}
-            role="tablist"
-            aria-label="Website template categories"
-          >
-            {templates.map((template, index) => (
-              <button
-                onClick={() => {
-                  setImagePath(template.path);
-                  setSelectedTemplate(template);
-                }}
-                key={index}
-                className="px-3 sm:px-5 h-10 whitespace-nowrap flex-grow bg-[rgb(7,7,7)] rounded-full text-slate-400 text-sm sm:text-md hover:bg-black/60 hover:text-slate-300"
-                role="tab"
-                aria-selected={selectedTemplate.name === template.name}
-                aria-controls={`template-${template.name.toLowerCase().replace(' ', '-')}`}
-              >
-                {template.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
+  <div className="relative w-full max-w-[600px]">
+    <button
+      onClick={() => handleScroll(-150)}
+      className={`absolute left-0 top-0 pr-5 lg:pr-10 h-full bg-gradient-to-r from-backGround to-transparent cursor-pointer ${targetScroll === 0 ? 'hidden' : ''}`}
+      aria-label="Scroll templates left"
+    >
+      <img src={leftArrow} alt="Navigate to previous templates" className="w-5 lg:w-7" />
+    </button>
+    <button
+      onClick={() => handleScroll(150)}
+      className={`absolute right-0 top-0 h-full pl-5 lg:pl-10 bg-gradient-to-r from-transparent to-backGround cursor-pointer`}
+      aria-label="Scroll templates right"
+    >
+      <img src={rightArrow} alt="Navigate to next templates" className="w-5 lg:w-7" />
+    </button>
+    <div
+      ref={containerRef}
+      className="flex space-x-3 w-full px-5 overflow-x-scroll overflow-y-hidden scroll-m-6 scrollStyle"
+      style={{ scrollBehavior: "smooth" }}
+      role="tablist"
+      aria-label="Website template categories"
+    >
+      {templates.map((template, index) => (
+        <button
+          onClick={() => {
+            setImagePath(template.path);
+            setSelectedTemplate(template);
+          }}
+          key={index}
+          className="px-3 sm:px-5 h-10 whitespace-nowrap flex-grow bg-[rgb(7,7,7)] rounded-full text-slate-400 text-sm sm:text-md hover:bg-black/60 hover:text-slate-300"
+          role="tab"
+          aria-selected={selectedTemplate.name === template.name}
+          aria-controls={`template-${template.name.toLowerCase().replace(' ', '-')}`}
+        >
+          {template.name}
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
       <div className="w-full h-full flex justify-center items-center">
         <div className="w-full h-full">
           <div className="relative mx-auto border-gray-800 dark:border-black bg-black border-[8px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">

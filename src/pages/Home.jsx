@@ -41,7 +41,7 @@ export default function Home() {
     script.text = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "url": "https://mweblabs.com",
+      "url": "https://mweblabs.agency",
       "name": "MWebLabs",
       "description": [
         {
@@ -65,14 +65,6 @@ export default function Home() {
             "@value": "Services de développement web, solutions numériques et conception de sites web sur mesure"
           }
         ]
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://mweblabs.com/search?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
       }
     });
     document.head.appendChild(script);

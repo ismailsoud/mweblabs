@@ -32,6 +32,8 @@ body{
     width: 8px !important; /* Adjust the width as needed */
     height: 3px;
     background-color: rgba(0, 0, 0, 0.075);
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 .scrollStyle::-webkit-scrollbar-thumb {
@@ -40,6 +42,9 @@ body{
     width: 3px !important; /* Adjust the width as needed */
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #555;
+}
+.scrollStyle::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 /* -------- */
 .scrollStyle2::-webkit-scrollbar {
