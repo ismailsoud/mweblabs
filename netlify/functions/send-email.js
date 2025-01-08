@@ -1,4 +1,24 @@
 const nodemailer = require('nodemailer');
+const axios = require('axios');
+
+const verifyRecaptcha = async (token) => {
+  try {
+    const response = await axios.post(
+      'https://www.google.com/recaptcha/api/siteverify',
+      null,
+      {
+        params: {
+          secret: process.env.RECAPTCHA_SECRET_KEY,
+          response: token
+        }
+      }
+    );
+    return response.data.success;
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error);
+    return false;
+  }
+};
 
 exports.handler = async (event) => {
   // Only allow POST
@@ -7,7 +27,16 @@ exports.handler = async (event) => {
   }
 
   try {
-    const { name, email, subject, message } = JSON.parse(event.body);
+    const { name, email, subject, message, recaptchaToken } = JSON.parse(event.body);
+
+    // Verify reCAPTCHA token
+    const isRecaptchaValid = await verifyRecaptcha(recaptchaToken);
+    if (!isRecaptchaValid) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: 'reCAPTCHA verification failed' })
+      };
+    }
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',

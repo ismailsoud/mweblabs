@@ -1,6 +1,18 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const ContactForm = () => {
+  const recaptchaRef = useRef(null);
+  
+  useEffect(() => {
+    // Initialize reCAPTCHA
+    if (window.grecaptcha) {
+      window.grecaptcha.ready(() => {
+        window.grecaptcha.render(recaptchaRef.current, {
+          sitekey: '6Lfvv7EqAAAAACqxVdrb3u-WTv5yGz9uwb30pnNa'
+        });
+      });
+    }
+  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -52,6 +64,16 @@ const ContactForm = () => {
       return;
     }
 
+    // Get reCAPTCHA token
+    const recaptchaValue = grecaptcha.getResponse();
+    if (!recaptchaValue) {
+      setErrors(prev => ({
+        ...prev,
+        recaptcha: 'Please complete the reCAPTCHA verification'
+      }));
+      return;
+    }
+
     setStatus('sending');
 
     try {
@@ -60,12 +82,16 @@ const ContactForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken: recaptchaValue
+        }),
       });
 
       if (response.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
+        grecaptcha.reset();
         // Announce success to screen readers
         const successMessage = document.getElementById('form-status');
         if (successMessage) {
@@ -187,7 +213,18 @@ const ContactForm = () => {
           )}
         </div>
 
-        <div>
+        <div className="space-y-4">
+          <div 
+            className="flex justify-center"
+            aria-label="reCAPTCHA verification"
+          >
+            <div ref={recaptchaRef}></div>
+          </div>
+          {errors.recaptcha && (
+            <p className="text-center text-sm text-red-500" role="alert">
+              {errors.recaptcha}
+            </p>
+          )}
           <button
             type="submit"
             disabled={status === 'sending'}

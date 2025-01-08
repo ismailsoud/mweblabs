@@ -22,7 +22,7 @@ export default function Testemonials() {
           text="Working with Mweblabs has been a seamless and professional experience! Their communication was consistently clear and timely. From the initial planning stages to the final launch, every aspect of our website was expertly crafted and executed by their team. We're excited about the prospect of collaborating with them further down the road"
           stars={5}
           clientImage={client1}
-          clientName="John Doe"
+          clientName="James Parker"
           clientRole="Business Owner"
         />
         <Testimonial
@@ -30,7 +30,7 @@ export default function Testemonials() {
           stars={5}
           clientImage={client2}
           clientName="Jane Smith"
-          clientRole="Marketing Director"
+          clientRole="Business Owner"
         />
         <Testimonial
           text="MWebLabs just completed our new site design, and working with them was truly exceptional. They maintained clear communication with our team throughout the entire process, making it effortless for us. We are incredibly satisfied with the final product and highly recommend MWebLabs."

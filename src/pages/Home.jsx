@@ -97,9 +97,9 @@ export default function Home() {
             <Technologies />
           </section>
 
-          <section aria-label="Pricing Plans" className="w-full h-full lg:px-10 lg:pb-40 border-b-[1px] border-slate-400 px-8">
+          {/* <section aria-label="Pricing Plans" className="w-full h-full lg:px-10 lg:pb-40 border-b-[1px] border-slate-400 px-8">
             <Pricing />
-          </section>
+          </section> */}
 
           <section aria-label="Contact Form" className="w-full h-full lg:px-10 py-16 lg:py-40 border-slate-400 px-8">
             <h2 className="text-4xl font-bold text-center mb-8">Contact Us</h2>
