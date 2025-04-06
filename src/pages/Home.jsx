@@ -89,9 +89,9 @@ export default function Home() {
             </div>
           </section>
 
-          <section aria-label="Client Testimonials" className="w-full h-full lg:px-10 py-16 lg:py-40 border-b-[1px] border-slate-400 px-8">
+          {/* <section aria-label="Client Testimonials" className="w-full h-full lg:px-10 py-16 lg:py-40 border-b-[1px] border-slate-400 px-8">
             <Testemonials />
-          </section>
+          </section> */}
 
           <section aria-label="Our Technologies" className="hidden lg:inline w-full h-full lg:px-10 lg:pt-20 pb-20 border-y-[1px] border-slate-400 space-y-16">
             <Technologies />
